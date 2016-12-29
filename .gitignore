@@ -1,2 +1,4 @@
 .idea
 piij-cci.iml
+target/
+*.DS_Store
