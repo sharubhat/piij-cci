@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
  * Created by sharath on 12/29/16.
  */
 public class Circuits {
-    public 	int howLong(String[] connects, String[] costs) {
+    public int howLong(String[] connects, String[] costs) {
         int[][] graph = initializeGraph(connects, costs);
 
         for(int i = 0; i < connects.length; i++) {
@@ -21,13 +21,16 @@ public class Circuits {
             }
         }
 
+        return getMaxLength(graph);
+    }
+
+    private int getMaxLength(int[][] graph) {
         int maxLength = 0;
         for(int i = 0; i < graph.length; i++) {
             for(int j = 0; j < graph[0].length; j++) {
                 maxLength = maxLength < graph[i][j] ? graph[i][j] : maxLength;
             }
         }
-
         return maxLength;
     }
 
