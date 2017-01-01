@@ -1,4 +1,4 @@
-package com.piij.cci.topcoder.graphs;
+package com.piij.cci.topcoder.graphs.dfs;
 
 import java.util.StringTokenizer;
 
