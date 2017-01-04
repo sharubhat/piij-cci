@@ -77,13 +77,6 @@ public class Escape {
             }
         }
 
-//        for(int i = 0; i < visited.length; i++) {
-//            for(int j = 0; j < visited[0].length; j++) {
-//                System.out.printf("%3d\t", visited[i][j]);
-//            }
-//            System.out.println();
-//        }
-
         return visited[500][500];
     }
 
@@ -91,11 +84,9 @@ public class Escape {
         int newX = top.x + x;
         int newY = top.y + y;
         int loss = visited[top.x][top.y] + steps;
-        if(visited[newX][newY] != -1)  {
-            if( visited[newX][newY] > loss) {
-                visited[newX][newY] = loss;
-                return;
-            }
+        if(visited[newX][newY] != -1) {
+            visited[newX][newY] = visited[newX][newY] > loss ? loss : visited[newX][newY];
+            return;
         }
         queue.add(new Node(newX, newY));
         visited[newX][newY] = loss;
