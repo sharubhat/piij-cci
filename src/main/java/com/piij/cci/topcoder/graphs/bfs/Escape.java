@@ -10,6 +10,10 @@ import java.util.StringTokenizer;
  * Created by sharath on 1/1/17.
  */
 public class Escape {
+    private enum State {
+        NORMAL, HARMFUL, DEADLY
+    }
+
     private static class Node {
         int x, y;
 
@@ -28,7 +32,7 @@ public class Escape {
     }
 
     public int lowest(String[] harmful, String[] deadly) {
-        int graph[][] = initializeGraph(harmful, deadly);
+        State graph[][] = initializeGraph(harmful, deadly);
         int width = graph.length;
         int height = graph.length;
         int[][] visited = new int[width][height];
@@ -47,12 +51,6 @@ public class Escape {
         while (!queue.isEmpty()) {
             Node top = queue.poll();
 
-            // Now we need to generate all of the transitions between nodes, we can do this quite easily using some
-            // nested for loops, one for each direction that it is possible for one player to move.  Since we need
-            // to generate the following deltas: (-1,-1), (-1,0), (-1,1), (0,-1), (0,0), (0,1), (1,-1), (1,0), (1,1)
-            // we can use a for loop from -1 to 1 to do exactly that.
-            if (top.x == 501 && top.y == 501)
-                return graph[501][501];
             int[][] delta = {{-1,0}, {1, 0}, {0, -1}, {0, 1}};
             for(int[] entry : delta) {
                 int dx = entry[0];
@@ -87,6 +85,7 @@ public class Escape {
         if(visited[newX][newY] != -1) {
             if(visited[newX][newY] > loss) {
                 visited[newX][newY] = loss;
+                // once the life required has been updated by a smaller value, we need to run a new search on that node
                 queue.add(new Node(newX, newY));
             }
             return;
@@ -95,31 +94,36 @@ public class Escape {
         visited[newX][newY] = loss;
     }
 
-    private boolean outOfBounds(int[][] graph, int x, int y) {
+    private boolean outOfBounds(State[][] graph, int x, int y) {
         return x < 0 || y < 0 || x >= graph.length || y >= graph.length;
     }
 
-    private boolean isDeadly(int[][] graph, int x, int y) {
-        return graph[x][y] == 2;
+    private boolean isDeadly(State[][] graph, int x, int y) {
+        return graph[x][y] == State.DEADLY;
     }
 
-    private boolean isHarmful(int[][] graph, int x, int y) {
-        return graph[x][y] == 1;
+    private boolean isHarmful(State[][] graph, int x, int y) {
+        return graph[x][y] == State.HARMFUL;
     }
 
-    private boolean isNormal(int[][] graph, int x, int y) {
-        return graph[x][y] == 0;
+    private boolean isNormal(State[][] graph, int x, int y) {
+        return graph[x][y] == State.NORMAL;
     }
 
-    private int[][] initializeGraph(String[] harmful, String[] deadly) {
-        int[][] graph = new int[501][501];
-        fill(harmful, graph, 1);
-        fill(deadly, graph, 2);
+    private State[][] initializeGraph(String[] harmful, String[] deadly) {
+        State[][] graph = new State[501][501];
+        for(int i = 0; i < 501; i++) {
+            for(int j = 0; j < 501; j++) {
+                graph[i][j] = State.NORMAL;
+            }
+        }
+        fill(harmful, graph, State.HARMFUL);
+        fill(deadly, graph, State.DEADLY);
         return graph;
     }
 
-    private void fill(String[] harmful, int[][] graph, int color) {
-        for (String s : harmful) {
+    private void fill(String[] states, State[][] graph, State color) {
+        for (String s : states) {
             StringTokenizer st = new StringTokenizer(s, " ");
             while (st.hasMoreTokens()) {
                 int x1 = Integer.parseInt(st.nextToken());
