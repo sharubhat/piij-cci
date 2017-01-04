@@ -85,7 +85,10 @@ public class Escape {
         int newY = top.y + y;
         int loss = visited[top.x][top.y] + steps;
         if(visited[newX][newY] != -1) {
-            visited[newX][newY] = visited[newX][newY] > loss ? loss : visited[newX][newY];
+            if(visited[newX][newY] > loss) {
+                visited[newX][newY] = loss;
+                queue.add(new Node(newX, newY));
+            }
             return;
         }
         queue.add(new Node(newX, newY));
