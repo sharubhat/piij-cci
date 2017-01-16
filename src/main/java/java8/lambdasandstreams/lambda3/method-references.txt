@@ -1,0 +1,19 @@
+With explicit method calls
+==========================
+
+method1(x, y, d -> Math.cos(d));
+someList.forEach(entry -> System.out.println(entry));
+method2(a, b, c, (d1,d2) -> Math.pow(d1,d2));
+someStream.reduce(0, (i1,i2) -> Integer.sum(i1, i2));
+method3(foo, bar, (a,b,c) -> Utils.doSomethingWith(a,b,c));
+method4(() -> Math.random());
+
+With method references
+======================
+
+method1(x, y, Math::cos);
+someList.forEach(System.out::println);
+method2(a, b, c, Math::pow);
+someStream.reduce(0, Integer::sum);
+method3(foo, bar, Utils::doSomethingWith);
+method4(Math::random);
