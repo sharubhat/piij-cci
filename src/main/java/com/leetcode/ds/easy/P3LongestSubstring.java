@@ -1,4 +1,4 @@
-package com.leetcode.ds;
+package com.leetcode.ds.easy;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
