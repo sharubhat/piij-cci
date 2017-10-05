@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 public class FunctionUtils {
     public static <T> Predicate<T> allPassPredicate(Predicate<T>... tests) {
         Predicate<T> result = e -> true;
-        for(Predicate<T> test : tests) {
+          for (Predicate<T> test : tests) {
             result = result.and(test);
         }
         return result;
@@ -22,7 +22,7 @@ public class FunctionUtils {
 
     public static<T> Predicate<T> anyPassPredicate(Predicate<T>... tests) {
         Predicate<T> result = e -> false;
-        for(Predicate<T> test : tests) {
+          for (Predicate<T> test : tests) {
             result = result.or(test);
         }
         return result;

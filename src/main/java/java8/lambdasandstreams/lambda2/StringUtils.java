@@ -15,8 +15,8 @@ public class StringUtils {
 
     public static List<String> allMatches(List<String> strings, Predicate<String> p) {
         List<String> result = new ArrayList<>();
-        for(String s : strings) {
-            if(p.test(s)) {
+          for (String s : strings) {
+              if (p.test(s)) {
                 result.add(s);
             }
         }
@@ -25,7 +25,7 @@ public class StringUtils {
 
     public static List<String> transformedList(List<String> strings, Function<String, String> f) {
         List<String> result = new ArrayList<>();
-        for(String s : strings) {
+          for (String s : strings) {
             result.add(f.apply(s));
         }
         return result;

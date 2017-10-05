@@ -1,4 +1,4 @@
-package com.piij.cci.topcoder.graphs.dfs;
+package com.piij.cci.topcoder.graphs.dfs.tc;
 
 import java.util.StringTokenizer;
 
@@ -11,10 +11,10 @@ public class Circuits {
     public int howLong(String[] connects, String[] costs) {
         int[][] graph = initializeGraph(connects, costs);
 
-        for(int i = 0; i < connects.length; i++) {
-            for(int j = 0; j < connects.length; j++) {
-                for(int k = 0; k < connects.length; k++) {
-                    if(graph[i][j] != 0 && graph[j][k] != 0 && graph[i][k] < graph[i][j] + graph[j][k]) {
+          for (int i = 0; i < connects.length; i++) {
+              for (int j = 0; j < connects.length; j++) {
+                  for (int k = 0; k < connects.length; k++) {
+                      if (graph[i][j] != 0 && graph[j][k] != 0 && graph[i][k] < graph[i][j] + graph[j][k]) {
                         graph[i][k] = graph[i][j] + graph[j][k];
                     }
                 }
@@ -26,8 +26,8 @@ public class Circuits {
 
     private int getMaxLength(int[][] graph) {
         int maxLength = 0;
-        for(int i = 0; i < graph.length; i++) {
-            for(int j = 0; j < graph[0].length; j++) {
+          for (int i = 0; i < graph.length; i++) {
+              for (int j = 0; j < graph[0].length; j++) {
                 maxLength = maxLength < graph[i][j] ? graph[i][j] : maxLength;
             }
         }
@@ -36,10 +36,10 @@ public class Circuits {
 
     private int[][] initializeGraph(String[] connects, String[] costs) {
         int[][] graph = new int[connects.length][connects.length];
-        for(int i = 0; i < connects.length; i++) {
+          for (int i = 0; i < connects.length; i++) {
             StringTokenizer stConnects = new StringTokenizer(connects[i], " ");
             StringTokenizer stCosts = new StringTokenizer(costs[i], " ");
-            while(stConnects.hasMoreTokens()) {
+              while (stConnects.hasMoreTokens()) {
                 int con = Integer.parseInt(stConnects.nextToken());
                 int cost = Integer.parseInt(stCosts.nextToken());
                 graph[i][con] = cost;

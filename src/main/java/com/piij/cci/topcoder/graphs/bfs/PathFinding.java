@@ -44,11 +44,11 @@ public class PathFinding {
         Queue<Node> queue = new LinkedList<>();
         pushToQueue(queue, start, visited);
 
-        while(!queue.isEmpty()) {
+          while (!queue.isEmpty()) {
             Node top = queue.poll();
 
             // Check if player 1 or player 2 is on top of each other, if so continue
-            if(steppingOnEachOther(top))
+              if (steppingOnEachOther(top))
                 continue;
 
             // Check if the current positions of A and B are the opposite of what they were in start.
@@ -73,7 +73,7 @@ public class PathFinding {
                                     top.bx + bxDelta, top.by + byDelta,
                                     top.steps + 1);
                             // Check if player 1 or player 2 is out of bounds, or on an X square, if so continue
-                            if(outOfBounds(adj, width, height) || isHittingWall(adj, graph))
+                              if (outOfBounds(adj, width, height) || isHittingWall(adj, graph))
                                 continue;
 
                             // Add the new node into the queue
@@ -105,7 +105,7 @@ public class PathFinding {
     }
 
     private void pushToQueue(Queue<Node> queue, Node v, boolean[][][][] visited) {
-        if(visited[v.ax][v.ay][v.bx][v.by])
+          if (visited[v.ax][v.ay][v.bx][v.by])
             return;
         queue.add(v);
         visited[v.ax][v.ay][v.bx][v.by] = true;
@@ -113,13 +113,13 @@ public class PathFinding {
 
     private Node findPosAandB(char[][] graph) {
         int ax = 0, ay = 0, bx = 0, by = 0;
-        for(int i = 0; i < graph.length; i++) {
+          for (int i = 0; i < graph.length; i++) {
             for (int j = 0; j < graph[0].length; j++) {
-                if(graph[i][j] == 'A') {
+                  if (graph[i][j] == 'A') {
                     ax = i;
                     ay = j;
                 }
-                if(graph[i][j] == 'B') {
+                  if (graph[i][j] == 'B') {
                     bx = i;
                     by = j;
                 }
@@ -132,8 +132,8 @@ public class PathFinding {
         int length = board.length;
         int width = board[0].length();
         char[][] graph = new char[length][width];
-        for(int i = 0 ; i < board.length; i++) {
-            for(int j = 0; j < board[i].length(); j++)
+          for (int i = 0 ; i < board.length; i++) {
+              for (int j = 0; j < board[i].length(); j++)
                 graph[i][j] = board[i].charAt(j);
         }
         return graph;

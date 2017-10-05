@@ -58,7 +58,7 @@ public class Lambda1 {
         // strings containing 'e' first and rest next
         Arrays.sort(names, (s1, s2) -> {
                     if (s1.contains("e")) {
-                        if(s2.contains("e"))
+                          if (s2.contains("e"))
                             return 0;
                         else
                             return -1;
@@ -116,7 +116,7 @@ public class Lambda1 {
 
         public static int compareContainsE(String s1, String s2) {
             if (s1.contains("e")) {
-                if(s2.contains("e"))
+                  if (s2.contains("e"))
                     return 0;
                 else
                     return -1;

@@ -1,4 +1,4 @@
-package com.piij.cci.topcoder.graphs.dfs;
+package com.piij.cci.topcoder.graphs.dfs.tc;
 
 import java.util.StringTokenizer;
 
@@ -21,9 +21,9 @@ public class Marketing {
         int[] color = new int[len];
         oddCycle = false;
 
-        for(int i = 0; i < len; i++) {
+          for (int i = 0; i < len; i++) {
             StringTokenizer st = new StringTokenizer(compete[i], " ");
-            while(st.hasMoreTokens()) {
+              while (st.hasMoreTokens()) {
                 int j = Integer.parseInt(st.nextToken());
                 table[i][j] = table[j][i] = true;
             }
@@ -31,14 +31,14 @@ public class Marketing {
 
         int ncomp = 0;
 
-        for(int i = 0; i < len; i++) {
-            if(color[i] == UNDECIDED) {
+          for (int i = 0; i < len; i++) {
+              if (color[i] == UNDECIDED) {
                 ncomp++;
                 dfs(table, color, i, TEENAGER);
             }
         }
 
-        if(oddCycle) {
+          if (oddCycle) {
             return -1;
         }
 
@@ -54,16 +54,16 @@ public class Marketing {
 
     private void dfs(boolean[][] table, int[] color, int currIndex, int category) {
         int nextCategory = (category == TEENAGER) ? ADULT : TEENAGER;
-        if(color[currIndex] != UNDECIDED) {
-            if(color[currIndex] != category) {
+          if (color[currIndex] != UNDECIDED) {
+              if (color[currIndex] != category) {
                 oddCycle = true;
             }
             // category is as expected, return
             return;
         }
         color[currIndex] = category;
-        for(int i = 0; i < table.length; i++) {
-            if(table[currIndex][i]) {
+          for (int i = 0; i < table.length; i++) {
+              if (table[currIndex][i]) {
                 dfs(table, color, i, nextCategory);
             }
         }

@@ -29,28 +29,28 @@ public class TeamBuilder {
         }
 
         // if entire row is true, it means location at index i connects to all other locations
-        for(int i = 0; i < adj.length; i++) {
+          for (int i = 0; i < adj.length; i++) {
             boolean connected = true;
-            for(int j = 0; j < adj.length; j++) {
-                if(!adj[i][j]) {
+              for (int j = 0; j < adj.length; j++) {
+                  if (!adj[i][j]) {
                     connected = false;
                     break;
                 }
             }
-            if(connected)
+              if (connected)
                 ret[0]++;
         }
 
         // if entire column is true, it means location at index i is connected to all other locations
-        for(int i = 0; i < adj.length; i++) {
+          for (int i = 0; i < adj.length; i++) {
             boolean connected = true;
-            for(int j = 0; j < adj.length; j++) {
-                if(!adj[j][i]) {
+              for (int j = 0; j < adj.length; j++) {
+                  if (!adj[j][i]) {
                     connected = false;
                     break;
                 }
             }
-            if(connected)
+              if (connected)
                 ret[1]++;
         }
 

@@ -15,8 +15,8 @@ public class EntryUtil<T> {
 
     public static <T> List<T> allMatches(List<T> entries, Predicate<T> p) {
         List<T> result = new ArrayList<>();
-        for(T t : entries) {
-            if(p.test(t)) {
+          for (T t : entries) {
+              if (p.test(t)) {
                 result.add(t);
             }
         }
@@ -25,7 +25,7 @@ public class EntryUtil<T> {
 
     public static<T, R> List<R> transformedList(List<T> entries, Function<T, R> f) {
         List<R> result = new ArrayList<>();
-        for(T t : entries) {
+          for (T t : entries) {
             result.add(f.apply(t));
         }
         return result;

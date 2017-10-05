@@ -7,7 +7,7 @@ import java.util.PriorityQueue;
  * Created by sharath on 1/5/17.
  */
 public class KiloManX {
-    class Node implements Comparable<Node>{
+    private static class Node implements Comparable<Node>{
         int weapons;
         int shots;
         public Node(int weapons, int shots){
@@ -16,7 +16,7 @@ public class KiloManX {
         }
         @Override
         public int compareTo(Node n){
-            return ((shots == n.shots)?0:(shots>n.shots)?1:-1);
+            return Integer.compare(shots, n.shots);
         }
     }
 
@@ -27,10 +27,10 @@ public class KiloManX {
         pq.add(new Node(0, 0));
         BitSet visited = new BitSet(1 << numWeapons);
 
-        while(!pq.isEmpty()) {
+          while (!pq.isEmpty()) {
             Node top = pq.remove();
 
-            if(visited.get(top.weapons))
+              if (visited.get(top.weapons))
                 continue;
             visited.set(top.weapons);
 
@@ -40,18 +40,18 @@ public class KiloManX {
                 return top.shots;
             }
 
-            for(int i = 0; i < numWeapons; i++) {
+              for (int i = 0; i < numWeapons; i++) {
                 // Check if we've already visited this boss, then don't bother trying him again
                 if (((top.weapons >> i) & 1) != 0) continue;
 
                 // Now figure out what the best amount of time that we can destroy this boss is, given the weapons we have.
                 // We initialize this value to the boss's health, as that is our default (with our KiloBuster).
                 int best = bossHealth[i];
-                for(int j = 0; j < numWeapons; j++) {
+                  for (int j = 0; j < numWeapons; j++) {
                     // cannot defeat same person with same weapon
-                    if(i == j)
+                      if (i == j)
                         continue;
-                    if((((top.weapons >> j) & 1) != 0) && damageChart[j].charAt(i) != '0') {
+                      if ((((top.weapons >> j) & 1) != 0) && damageChart[j].charAt(i) != '0') {
                         // We have this weapon, so try using it to defeat this boss
                         int shotsNeeded = bossHealth[i] / (damageChart[j].charAt(i) - '0');
                         if (bossHealth[i] % (damageChart[j].charAt(i) - '0') != 0) {

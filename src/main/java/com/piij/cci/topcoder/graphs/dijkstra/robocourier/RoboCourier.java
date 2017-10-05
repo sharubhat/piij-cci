@@ -15,7 +15,7 @@ import java.util.*;
 public class RoboCourier {
     private Map<Node, Integer> map;
 
-    class Node {
+    private static class Node {
         int x, y;
 
         public Node(int x, int y) {
@@ -42,7 +42,7 @@ public class RoboCourier {
         }
     }
 
-    class Graph {
+    private static class Graph {
         List<Set<Integer>> adj = new ArrayList<>();
 
         public void addEdge(int u, int v) {
@@ -69,7 +69,7 @@ public class RoboCourier {
 
         @Override
         public int compareTo(State o) {
-            return this.cost - o.cost;
+            return Integer.compare(this.cost, o.cost);
         }
 
         int getVisitedArrayNum() {

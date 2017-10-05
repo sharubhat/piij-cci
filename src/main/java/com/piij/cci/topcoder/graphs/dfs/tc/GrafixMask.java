@@ -1,4 +1,4 @@
-package com.piij.cci.topcoder.graphs.dfs;
+package com.piij.cci.topcoder.graphs.dfs.tc;
 
 import java.util.*;
 
@@ -22,14 +22,14 @@ public class GrafixMask {
     public int[] sortedAreas(String[] rectangles) {
         boolean[][] fill = new boolean[400][600];
 
-        for(int i = 0; i < rectangles.length; i++) {
+          for (int i = 0; i < rectangles.length; i++) {
             StringTokenizer st = new StringTokenizer(rectangles[i]);
             int x1 = Integer.parseInt(st.nextToken());
             int y1 = Integer.parseInt(st.nextToken());
             int x2 = Integer.parseInt(st.nextToken());
             int y2 = Integer.parseInt(st.nextToken());
-            for(int j = x1; j <= x2; j++) {
-                for(int k = y1; k <= y2; k++) {
+              for (int j = x1; j <= x2; j++) {
+                  for (int k = y1; k <= y2; k++) {
                     fill[j][k] = true;
                 }
             }
@@ -37,9 +37,9 @@ public class GrafixMask {
 
         List<Integer> areas = new ArrayList<>();
 
-        for(int i = 0; i < fill.length; i++) {
-            for(int j = 0; j < fill[i].length; j++) {
-                if(!fill[i][j]) {
+          for (int i = 0; i < fill.length; i++) {
+              for (int j = 0; j < fill[i].length; j++) {
+                  if (!fill[i][j]) {
                     areas.add(doFill(fill, i, j));
                 }
             }
@@ -49,7 +49,7 @@ public class GrafixMask {
 
         int[] results = new int[areas.size()];
 
-        for(int i = 0; i < areas.size(); i++) {
+          for (int i = 0; i < areas.size(); i++) {
             results[i] = areas.get(i);
         }
 
@@ -61,9 +61,9 @@ public class GrafixMask {
         Stack<Point> stack = new Stack<>();
         stack.push(new Point(i, j));
 
-        while(!stack.isEmpty()) {
+          while (!stack.isEmpty()) {
             Point curr = stack.pop();
-            if(isWithinBounds(curr, fill) && !isVisited(curr, fill)) {
+              if (isWithinBounds(curr, fill) && !isVisited(curr, fill)) {
                 markAsVisited(curr, fill);
                 area++;
                 visitNeighbours(stack, curr);
@@ -98,7 +98,7 @@ public class GrafixMask {
         // http://community.topcoder.com/stat?c=problem_solution&cr=7452866&rd=5857&pm=2998
         GrafixMask g = new GrafixMask();
         int[] res = g.sortedAreas(new String[] {"48 192 351 207", "48 392 351 407", "120 52 135 547", "260 52 275 547"});
-        for(int i = 0; i < res.length; i++) {
+          for (int i = 0; i < res.length; i++) {
             System.out.println(res[i]);
         }
     }

@@ -36,8 +36,8 @@ public class Escape {
         int width = graph.length;
         int height = graph.length;
         int[][] visited = new int[width][height];
-        for(int i = 0; i < visited.length; i++) {
-            for(int j = 0; j < visited[0].length; j++) {
+          for (int i = 0; i < visited.length; i++) {
+              for (int j = 0; j < visited[0].length; j++) {
                 visited[i][j] = -1;
             }
         }
@@ -52,14 +52,14 @@ public class Escape {
             Node top = queue.poll();
 
             int[][] delta = {{-1,0}, {1, 0}, {0, -1}, {0, 1}};
-            for(int[] entry : delta) {
+              for (int[] entry : delta) {
                 int dx = entry[0];
                 int dy = entry[1];
                 // if moving out of bounds, ignore
-                if(outOfBounds(graph, top.x + dx, top.y + dy))
+                  if (outOfBounds(graph, top.x + dx, top.y + dy))
                     continue;
                 // if moving to deadly zone, ignore
-                if(isDeadly(graph, top.x + dx, top.y + dy))
+                  if (isDeadly(graph, top.x + dx, top.y + dy))
                     continue;
                 int steps = -1;
                 if (isNormal(graph, top.x + dx, top.y + dy)) {
@@ -69,7 +69,7 @@ public class Escape {
                 if (isHarmful(graph, top.x + dx, top.y + dy)) {
                     steps = 1;
                 }
-                if(steps != -1) {
+                  if (steps != -1) {
                     pushToQueue(queue, top, dx, dy, visited, steps);
                 }
             }
@@ -82,8 +82,8 @@ public class Escape {
         int newX = top.x + x;
         int newY = top.y + y;
         int loss = visited[top.x][top.y] + steps;
-        if(visited[newX][newY] != -1) {
-            if(visited[newX][newY] > loss) {
+          if (visited[newX][newY] != -1) {
+              if (visited[newX][newY] > loss) {
                 visited[newX][newY] = loss;
                 // once the life required has been updated by a smaller value, we need to run a new search on that node
                 queue.add(new Node(newX, newY));
@@ -112,8 +112,8 @@ public class Escape {
 
     private State[][] initializeGraph(String[] harmful, String[] deadly) {
         State[][] graph = new State[501][501];
-        for(int i = 0; i < 501; i++) {
-            for(int j = 0; j < 501; j++) {
+          for (int i = 0; i < 501; i++) {
+              for (int j = 0; j < 501; j++) {
                 graph[i][j] = State.NORMAL;
             }
         }
@@ -131,13 +131,13 @@ public class Escape {
                 int x2 = Integer.parseInt(st.nextToken());
                 int y2 = Integer.parseInt(st.nextToken());
 
-                if(x2 < x1) {
+                  if (x2 < x1) {
                     int tmp = x2;
                     x2 = x1;
                     x1 = tmp;
                 }
 
-                if(y2 < y1) {
+                  if (y2 < y1) {
                     int tmp = y2;
                     y2 = y1;
                     y1 = tmp;
