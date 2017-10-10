@@ -27,7 +27,7 @@ public class P146LruCache {
     Node prev;
     Node next;
 
-    public Node(int key, int value) {
+    Node(int key, int value) {
       this.key = key;
       this.value = value;
 
@@ -43,9 +43,9 @@ public class P146LruCache {
     // if the list were singly linked
     void addToLeft(Node left) {
       left.next = this;
-      left.prev = prev;
+      this.prev = left;
       prev.next = left;
-      prev = left;
+      left.prev = prev;
     }
   }
 
