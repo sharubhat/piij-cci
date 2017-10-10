@@ -101,17 +101,4 @@ public class P146LruCache {
     }
     head.addToLeft(node);
   }
-
-  public static void main(String[] args) {
-    P146LruCache p = new P146LruCache(2);
-    p.put(1,1);
-    p.put(2,2);
-    p.get(1);
-    p.put(3,3);
-    p.get(2);
-    p.put(4,4);
-    p.get(1);
-    p.get(3);
-    p.get(4);
-  }
 }
