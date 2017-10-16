@@ -70,6 +70,10 @@ public class DGraph {
     }
   }
 
+  /**
+   * Detects presence of cycles in a directed graph.
+   * @return boolean
+   */
   public boolean hasCycle() {
     boolean[] visited = new boolean[v];
     for (int i = 0; i < v; i++) {
@@ -80,6 +84,13 @@ public class DGraph {
     return false;
   }
 
+  /**
+   * Recursive helper for finding cycles.
+   * @param s starting vertex.
+   * @param visited boolean array to keep track of visited vertices.
+   * @param verticesOnRecStack HashSet to keep track of vertices in current path.
+   * @return boolean
+   */
   private boolean hasCycle(int s, boolean[] visited, HashSet<Integer> verticesOnRecStack) {
     visited[s] = true;
     verticesOnRecStack.add(s);
@@ -95,6 +106,25 @@ public class DGraph {
         }
       }
       verticesOnRecStack.remove(s);
+    }
+    return false;
+  }
+
+  public boolean pathExists(int s, int e) {
+    return pathExists(s, e, new boolean[v]);
+  }
+
+  private boolean pathExists(int s, int e, boolean[] visited) {
+    visited[s] = true;
+    if(s == e) {
+      return true;
+    }
+    Iterator<Integer> adjIt = adjListArray[s].iterator();
+    while (adjIt.hasNext()) {
+      int n = adjIt.next();
+      if (!visited[n]) {
+        return pathExists(n, e, visited);
+      }
     }
     return false;
   }
@@ -129,13 +159,13 @@ public class DGraph {
     System.out.println();
     g.dfs(2);
     System.out.println();
-    System.out.println(g.hasCycle());
+    System.out.println("Cycle exists for cyclic graph : " + g.hasCycle());
 
     DGraph notCyclic = new DGraph(4);
     notCyclic.addEdge(1, 2);
     notCyclic.addEdge(2, 3);
     notCyclic.addEdge(3, 0);
-    System.out.println(notCyclic.hasCycle());
+    System.out.println("Cycle exists for acyclic graph : " + notCyclic.hasCycle());
 
     DGraph cyclicDisconnected = new DGraph(7);
     cyclicDisconnected.addEdge(0, 1);
@@ -144,7 +174,9 @@ public class DGraph {
     cyclicDisconnected.addEdge(4, 5);
     cyclicDisconnected.addEdge(5, 6);
     cyclicDisconnected.addEdge(6, 4);
-    System.out.println(cyclicDisconnected.hasCycle());
+    System.out.println("Cycle exists for cyclic disconnected graph : " + cyclicDisconnected.hasCycle());
+    System.out.printf("Path exists between %d and %d : %s\n", 1, 3, cyclicDisconnected.pathExists(1, 3));
+    System.out.printf("Path exists between %d and %d : %s\n", 1, 5, cyclicDisconnected.pathExists(1, 5));
   }
 
 }
