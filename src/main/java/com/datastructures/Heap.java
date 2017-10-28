@@ -8,7 +8,8 @@ import java.util.List;
  * Few things to keep in mind,
  * a. There is no internal ordering. Left child can be greater than right.
  * b. Always replace the smallest child while bubbling down.
- * c. Ignore first element of store to keep index calculations simpler.
+ * c. Left child index = 2n + 1, right child index = 2n + 2
+ * parent index = (n - 1) / 2
  */
 public class Heap {
   private List<Integer> store;
@@ -16,7 +17,7 @@ public class Heap {
 
   public Heap() {
     this.store = new ArrayList<>();
-    this.store.add(0);
+//    this.store.add(0);
     this.size = 0;
   }
 
@@ -25,40 +26,45 @@ public class Heap {
   }
 
   public void add(Integer n) {
-    this.store.add(++this.size, n);
+    this.store.add(this.size, n);
     bubbleUp();
+    this.size++;
     System.out.println(this);
   }
 
   public Integer peek() {
-    return this.store.get(1);
+    return this.store.get(0);
   }
 
   public Integer remove() {
     if (size <= 0) {
       throw new RuntimeException("Empty heap");
     }
-    System.out.println(this.store.subList(0, size + 1));
-    Integer min = this.store.get(1);
-    this.store.set(1, this.store.get(size));
+//    System.out.println(this.store.subList(0, size + 1));
+    Integer min = this.store.get(0);
+    this.store.set(0, this.store.get(size - 1));
+    this.store.remove(size - 1);
     this.size--;
-    System.out.println(this.store.subList(0, size + 1));
+//    System.out.println(this.store.subList(0, size + 1));
     bubbleDown();
-    System.out.println(this.store.subList(0, size + 1));
+//    System.out.println(this.store.subList(0, size + 1));
     return min;
   }
 
   public String toString() {
-    return this.store.subList(0, size + 1).toString();
+    return this.store.subList(0, size).toString();
   }
 
   private void bubbleDown() {
-    int parentIndex = 1;
+    int parentIndex = 0;
     int leftChildIndex = getLeftChildIndex(parentIndex);
-    int rightChildIndex = leftChildIndex + 1;
+    int rightChildIndex = getRightChildIndex(parentIndex);
     while(childExists(parentIndex)) {
       // very important condition. Replace the child that is smaller.
-      boolean replaceRightChild = rightChild(parentIndex) < leftChild(parentIndex);
+      boolean replaceRightChild = false;
+      if (rightChildIndex < size) {
+        replaceRightChild = rightChild(parentIndex) < leftChild(parentIndex);
+      }
       int parent = this.store.get(parentIndex);
       if (replaceRightChild && parent > rightChild(parentIndex)) {
         swap(parentIndex, rightChildIndex);
@@ -70,13 +76,12 @@ public class Heap {
         return;
       }
       leftChildIndex = getLeftChildIndex(parentIndex);
-      rightChildIndex = leftChildIndex + 1;
+      rightChildIndex = getRightChildIndex(parentIndex);
     }
   }
 
   private Integer rightChild(int parentIndex) {
-    int rightChildIndex = getLeftChildIndex(parentIndex) + 1;
-    return this.store.get(rightChildIndex);
+    return this.store.get(getRightChildIndex(parentIndex));
   }
 
   private Integer leftChild(int parentIndex) {
@@ -85,14 +90,14 @@ public class Heap {
 
   private boolean childExists(int parentIndex) {
     int leftChildIndex = getLeftChildIndex(parentIndex);
-    int rightChildIndex = leftChildIndex + 1;
-    return leftChildIndex <= size || rightChildIndex <= size;
+    int rightChildIndex = getRightChildIndex(parentIndex);
+    return leftChildIndex < size || rightChildIndex < size;
   }
 
   private void bubbleUp() {
     int index = this.size;
     int parentIndex = getParentIndex(index);
-    while (parentIndex > 0 &&
+    while (parentIndex >= 0 &&
             this.store.get(parentIndex).compareTo(this.store.get(index)) > 0) {
       swap(parentIndex, index);
       index = parentIndex;
@@ -107,11 +112,15 @@ public class Heap {
   }
 
   private int getParentIndex(int index) {
-    return index / 2;
+    return (index - 1) / 2;
   }
 
   private int getLeftChildIndex(int index) {
-    return index * 2;
+    return index * 2 + 1;
+  }
+
+  private int getRightChildIndex(int index) {
+    return index * 2 + 2;
   }
 
   public static void main(String[] args) {
