@@ -73,6 +73,7 @@ public class DWGraph {
         }
       }
     }
+    System.out.println(Arrays.toString(prev));
     System.out.println(Arrays.toString(dist));
   }
 
