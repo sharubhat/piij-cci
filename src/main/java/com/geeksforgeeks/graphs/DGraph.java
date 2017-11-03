@@ -1,9 +1,6 @@
 package com.geeksforgeeks.graphs;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Adjacency list representation of undirected graph.
@@ -39,9 +36,15 @@ public class DGraph {
 
   void bfs(int s) {
     boolean[] visited = new boolean[this.numVertices];
+    int[] level = new int[this.numVertices];
+    Arrays.fill(level, -1);
+    int[] parent = new int[this.numVertices];
     LinkedList<Integer> queue = new LinkedList<>();
     queue.add(s);
     visited[s] = true;
+    int i = 1;
+    level[s] = 0;
+    parent[s] = -1;
     while (queue.size() != 0) {
       s = queue.poll();
       actOnVertex(s);
@@ -51,9 +54,14 @@ public class DGraph {
         if (!visited[n]) {
           visited[n] = true;
           queue.add(n);
+          level[n] = i;
+          parent[n] = s;
         }
       }
+      i++;
     }
+    System.out.println("Level : " + Arrays.toString(level));
+    System.out.println("Parent : " + Arrays.toString(parent));
   }
 
   void dfs(int s) {
