@@ -1,9 +1,8 @@
 package com.geeksforgeeks.graphs;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.PriorityQueue;
 
 public class DWGraph {
@@ -48,33 +47,46 @@ public class DWGraph {
     this.adjListArray[src].add(new Edge(dest, weight));
   }
 
-  public void shortestPath(int s) {
+  /**
+   * Dijkstra's single source shortest path using min heap or priority queue
+   *
+   * @param source
+   */
+  public void shortestPath(int source) {
     PriorityQueue<Edge> pq = new PriorityQueue<>();
-    List<Integer> dist = new ArrayList<>();
-    List<Integer> prev = new ArrayList<>();
+    int[] dist = new int[this.numVertices];
+    int[] prev = new int[this.numVertices];
+    Arrays.fill(dist, Integer.MAX_VALUE);
+    Arrays.fill(prev, -1);
 
-    for (int i = 0; i < this.numVertices; i++) {
-      if(i == s) {
-        dist.add(0);
-        prev.add(s);
-        pq.add(new Edge(i, 0));
-      } else {
-        dist.add(Integer.MAX_VALUE);
-        prev.add(-1);
-        pq.add(new Edge(i, Integer.MAX_VALUE));
-      }
-    }
-
+    dist[source] = 0;
+    pq.add(new Edge(source, 0));
     while (!pq.isEmpty()) {
-      Edge e = pq.poll();
-      int v = e.vertex;
-      int w = e.weight;
-      Iterator<Edge> adjIt = this.adjListArray[v].iterator();
+      Edge curr = pq.poll();
+      Iterator<Edge> adjIt = this.adjListArray[curr.vertex].iterator();
       while(adjIt.hasNext()) {
-        Edge edge = adjIt.next();
-
+        Edge adjE = adjIt.next();
+        if (dist[adjE.vertex] > curr.weight + adjE.weight) {
+          dist[adjE.vertex] = curr.weight + adjE.weight;
+          prev[adjE.vertex] = curr.vertex;
+          pq.add(new Edge(adjE.vertex, dist[adjE.vertex]));
+        }
       }
     }
+    System.out.println(Arrays.toString(dist));
+  }
 
+  public static void main(String[] args) {
+    DWGraph d = new DWGraph(7);
+    d.addEdge(0, 1, 4);
+    d.addEdge(0, 2, 10);
+    d.addEdge(1, 3, 21);
+    d.addEdge(2, 4, 5);
+    d.addEdge(2, 5, 8);
+    d.addEdge(4, 3, 5);
+    d.addEdge(5, 3, 12);
+    d.addEdge(3, 6, 4);
+
+    d.shortestPath(0);
   }
 }
