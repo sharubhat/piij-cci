@@ -34,14 +34,18 @@ public class DGraph {
     System.out.print(s + " ");
   }
 
-  void bfs(int s) {
-    boolean[] visited = new boolean[this.numVertices];
-    int[] level = new int[this.numVertices];
-    Arrays.fill(level, -1);
-    int[] parent = new int[this.numVertices];
+  /**
+   * It's important not to visit a node twice. It can be achieved in many way. Either use a boolean array
+   * of visited nodes(or set) or check if a level or parent has been defined for the node in question.
+   * Using Integer array instead of primitive int array avoids the necessity to initialize the array.
+   *
+   * @param s source node
+   */
+  public void bfs(int s) {
+    Integer[] level = new Integer[this.numVertices];
+    Integer[] parent = new Integer[this.numVertices];
     LinkedList<Integer> queue = new LinkedList<>();
     queue.add(s);
-    visited[s] = true;
     int i = 1;
     level[s] = 0;
     parent[s] = -1;
@@ -51,8 +55,7 @@ public class DGraph {
       Iterator<Integer> it = adjListArray[s].iterator();
       while (it.hasNext()) {
         int n = it.next();
-        if (!visited[n]) {
-          visited[n] = true;
+        if (parent[n] == null) {
           queue.add(n);
           level[n] = i;
           parent[n] = s;
@@ -62,6 +65,41 @@ public class DGraph {
     }
     System.out.println("Level : " + Arrays.toString(level));
     System.out.println("Parent : " + Arrays.toString(parent));
+  }
+
+  /**
+   * Strategy explained by MIT professor Erik Demaine.
+   * No need to use visited flag per node. Tracking parent helps in solving various problems and also
+   * can be used as alternative for visited flag.
+   * Topological Sort:
+   * Reversing the finishing times of the vertices (order in which the leaf nodes in dfs tree get visited)
+   * provides topological sort. An example problem is job scheduling. This can be easily solved by
+   * running dfs on each node and adding them to a list and then reversing or adding to beginning of
+   * linked list which naturally reverses the order.
+   */
+  public void dfs() {
+    LinkedList<Integer> topologicalSort = new LinkedList<>();
+    Integer[] parents = new Integer[this.numVertices];
+    for (int i = 0; i < this.numVertices; i++) {
+      if (parents[i] == null) {
+        dfsVisit(i, parents, topologicalSort);
+      }
+    }
+    System.out.println("DFS parents : " + Arrays.toString(parents));
+    System.out.println("Topological sort : " + topologicalSort);
+  }
+
+  private void dfsVisit(int s, Integer[] parents, LinkedList<Integer> tSort) {
+    Iterator<Integer> it = adjListArray[s].iterator();
+    actOnVertex(s);
+    while (it.hasNext()) {
+      int curr = it.next();
+      if(parents[curr] == null) {
+        parents[curr] = s;
+        dfsVisit(curr, parents, tSort);
+      }
+    }
+    tSort.addFirst(s);
   }
 
   void dfs(int s) {
@@ -148,36 +186,6 @@ public class DGraph {
     return false;
   }
 
-  /**
-   * Prints one of the possible topological sort of vertices.
-   */
-  public void topologicalSort() {
-    Stack stack = new Stack();
-    boolean[] visited = new boolean[this.numVertices];
-
-    for (int i = 0; i < this.numVertices; i++) {
-      if (!visited[i]) {
-        topologicalSort(i, visited, stack);
-      }
-    }
-
-    while (!stack.isEmpty()) {
-      System.out.print(stack.pop() + " ");
-    }
-  }
-
-  private void topologicalSort(int s, boolean[] visited, Stack stack) {
-    visited[s] = true;
-    Iterator<Integer> adjIt = this.adjListArray[s].iterator();
-    while (adjIt.hasNext()) {
-      int n = adjIt.next();
-      if(!visited[n]) {
-        topologicalSort(n, visited, stack);
-      }
-    }
-    stack.push(s);
-  }
-
   @Override
   public String toString() {
     StringBuffer sb = new StringBuffer();
@@ -213,6 +221,18 @@ public class DGraph {
     System.out.println();
     System.out.println("Cycle exists for cyclic graph : " + g.hasCycle());
 
+    DGraph dfsG = new DGraph(6);
+    dfsG.addEdge(0, 1);
+    dfsG.addEdge(1, 4);
+    dfsG.addEdge(4, 3);
+    dfsG.addEdge(3, 1);
+    dfsG.addEdge(0, 3);
+    dfsG.addEdge(2, 4);
+    dfsG.addEdge(2, 5);
+    dfsG.addEdge(5, 5);
+
+    dfsG.dfs();
+
     DGraph notCyclic = new DGraph(4);
     notCyclic.addEdge(1, 2);
     notCyclic.addEdge(2, 3);
@@ -232,18 +252,6 @@ public class DGraph {
             1, 3, cyclicDisconnected.pathExists(1, 3));
     System.out.printf("Path exists between %d and %d : %s\n",
             1, 5, cyclicDisconnected.pathExists(1, 5));
-
-    // Create a graph given in the above diagram
-    DGraph topSortG = new DGraph(6);
-    topSortG.addEdge(5, 2);
-    topSortG.addEdge(5, 0);
-    topSortG.addEdge(4, 0);
-    topSortG.addEdge(4, 1);
-    topSortG.addEdge(2, 3);
-    topSortG.addEdge(3, 1);
-
-    System.out.println("Topological sort of the given graph : ");
-    topSortG.topologicalSort();
   }
 
 }
