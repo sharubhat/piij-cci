@@ -78,8 +78,22 @@ public class DWGraph {
   }
 
   /**
-   * Single source shortest path for directed graphs with no negative cycles.
+   * Single source shortest path for directed graphs with no negative cycles. O(VE)
    * Also discovers negative cycles.
+   * Pseudo code:
+   * Initialize();
+   * // for shortest path p = v0 -> v1 -> v2 ->...vk, k = |v| - 1. There will be no cycles.
+   * for i = 1 to |v| - 1
+   *  for each edge (u, v) belongs to E
+   *    relax(u, v, w)
+   * // check for -ve cycles
+   * for each edge in graph
+   *  if d[v] > d[u] + w(u,v)
+   *    then there exists -ve cycle
+   * relax:
+   * if d[v] > d[u] + w(u,v)
+   *   d[v] = d[u] + w(u,v)
+   *   parent[v] = u
    * @param source source vertex
    */
   public void belmanFord(int source) {
