@@ -1,0 +1,10 @@
+ 5 EasySteps to DynamicProgramming
+ * 1. Define sub-problems count # sub-problems
+ * 2. guess(part of solution) count#choices
+ * 3. relate sub-problem solutions compute time/sub problem
+ * 4. recurse + memoize time = time/sub problem * #sub-problems
+ *     OR
+ *     build DP table bottom-up check sub-problems acyclic / topological order
+ * 5. solve original problem: = a sub-problem
+ *     OR
+ *     by combining sub-problem solutions ==> extra time
