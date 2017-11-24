@@ -8,6 +8,7 @@ import java.util.Map;
 
 /**
  * https://leetcode.com/problems/implement-magic-dictionary/discuss/
+ * A different approach : https://leetcode.com/articles/implement-magic-dictionary/
  */
 public class P676MagicDictionary {
 
