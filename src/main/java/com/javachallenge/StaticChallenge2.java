@@ -1,4 +1,4 @@
-package com.javachallange;
+package com.javachallenge;
 
 /**
  * Learning notes: Static state of a class is maintained across it's objects.
