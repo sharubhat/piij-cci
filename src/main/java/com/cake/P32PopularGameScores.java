@@ -1,10 +1,7 @@
-package com.interviewcake;
+package com.cake;
 
 import java.util.Arrays;
 
-/**
- * https://www.interviewcake.com/question/java/top-scores
- */
 public class P32PopularGameScores {
   public static void main(String[] args) {
     int[] unsortedScores = {37, 89, 41, 65, 91, 89, 53};

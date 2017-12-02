@@ -1,11 +1,10 @@
-package com.interviewcake;
+package com.cake;
 
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Recursive String permutations.
- * https://www.interviewcake.com/question/java/recursive-string-permutations
  * Generates n! permutations for strings with no repeated character.
  * Height of the recursion tree is n. So, time complexity is O(2^n).
  */
