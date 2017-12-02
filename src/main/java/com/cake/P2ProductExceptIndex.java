@@ -9,6 +9,9 @@ public class P2ProductExceptIndex {
   }
 
   public static int[] getProductsOfAllIntsExceptAtIndex(int[] input) {
+    if (input == null || input.length < 2) {
+      throw new RuntimeException("Need an input array with at least two elements");
+    }
     int[] productExceptAtIndex = new int[input.length];
     int productSoFar = 1;
 
