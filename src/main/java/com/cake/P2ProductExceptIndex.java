@@ -9,27 +9,21 @@ public class P2ProductExceptIndex {
   }
 
   public static int[] getProductsOfAllIntsExceptAtIndex(int[] input) {
-    int[] prefixProduct = new int[input.length];
+    int[] productExceptAtIndex = new int[input.length];
     int productSoFar = 1;
 
     for (int i = 0; i < input.length; i++) {
-      prefixProduct[i] = productSoFar;
+      productExceptAtIndex[i] = productSoFar;
       productSoFar = productSoFar * input[i];
     }
-    System.out.println(Arrays.toString(prefixProduct));
+    System.out.println(Arrays.toString(productExceptAtIndex));
 
-    int[] suffixProduct = new int[input.length];
-    int productAfter = 1;
-
+    productSoFar = 1;
     for (int i = input.length - 1; i >= 0; i--) {
-      suffixProduct[i] = productAfter;
-      productAfter = productAfter * input[i];
+      productExceptAtIndex[i] = productExceptAtIndex[i] * productSoFar;
+      productSoFar = productSoFar * input[i];
     }
-    System.out.println(Arrays.toString(suffixProduct));
 
-    for (int i = 0; i < input.length; i++) {
-      prefixProduct[i] = prefixProduct[i] * suffixProduct[i];
-    }
-    return prefixProduct;
+    return productExceptAtIndex;
   }
 }
