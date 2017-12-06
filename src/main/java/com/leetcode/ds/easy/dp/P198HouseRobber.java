@@ -1,4 +1,4 @@
-package com.leetcode.ds.easy;
+package com.leetcode.ds.easy.dp;
 
 /**
  * https://leetcode.com/problems/house-robber/description/
@@ -35,14 +35,13 @@ public class P198HouseRobber {
     if (nums == null || nums.length == 0) {
       return 0;
     }
-    int max2behind = 0;
-    int max1behind = 0;
-    int maxSum = 0;
-    for (int i = 0; i < nums.length; i++) {
-      maxSum = Math.max(max2behind + nums[i], max1behind);
-      max2behind = max1behind;
-      max1behind = maxSum;
+    int prevSum = 0;
+    int currSum = 0;
+    for (int value : nums) {
+      int tmp = currSum;
+      currSum = Math.max(prevSum + value, currSum);
+      prevSum = tmp;
     }
-    return maxSum;
+    return currSum;
   }
 }
