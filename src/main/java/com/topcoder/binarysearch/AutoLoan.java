@@ -1,7 +1,7 @@
-package com.topcoder;
+package com.topcoder.binarysearch;
 
 /**
- * https://community.topcoder.com/stat?c=problem_statement&pm=3970&rd=7993
+ * https://community.topcoder.com/stat?c=problem_statement&pm=3970&rd=7993&rm=&cr=15614628
  * Binary Search
  */
 public class AutoLoan {
@@ -12,14 +12,11 @@ public class AutoLoan {
     // The return value must be within 1e-9 absolute or relative error of the actual result.
     while (high - low > 1e-9) {
       mid = low + (high - low) / 2;
-      double temp = price;
-      for (int i = 0; i < loanTerm; i++) {
-        temp = temp + ((mid / 1200) * temp) - monthlyPayment;
-      }
-      if (temp == 0) {
+      double balance = getBalance(price, monthlyPayment, loanTerm, mid);
+      if (balance == 0) {
         return mid;
       } else {
-        if (temp < 0) {
+        if (balance < 0) {
           low = mid;
         } else  {
           high = mid;
@@ -27,6 +24,22 @@ public class AutoLoan {
       }
     }
     return mid;
+  }
+
+  /**
+   * Predicate function for binary search.
+   * @param price
+   * @param monthlyPayment
+   * @param loanTerm
+   * @param mid
+   * @return
+   */
+  private double getBalance(double price, double monthlyPayment, int loanTerm, double mid) {
+    double balance = price;
+    for (int i = 0; i < loanTerm; i++) {
+      balance = (balance + (mid / 1200 * balance)) - monthlyPayment;
+    }
+    return balance;
   }
 
   public static void main(String[] args) {
