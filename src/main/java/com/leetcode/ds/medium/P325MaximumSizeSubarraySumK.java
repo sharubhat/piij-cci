@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/description/
- * Ref: https://ide.geeksforgeeks.org/index.php
+ * Ref: https://www.geeksforgeeks.org/find-the-largest-subarray-with-0-sum/
  */
 public class P325MaximumSizeSubarraySumK {
   public int maxSubArrayLen(int[] nums, int k) {
