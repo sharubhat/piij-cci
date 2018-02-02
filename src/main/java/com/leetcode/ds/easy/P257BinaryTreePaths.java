@@ -20,12 +20,8 @@ public class P257BinaryTreePaths {
         paths.add(path + root.val);
         return paths;
       }
-      if (root.left != null) {
-        binaryTreePaths(root.left, path + root.val + "->", paths);
-      }
-      if (root.right != null) {
-        binaryTreePaths(root.right, path + root.val + "->", paths);
-      }
+      binaryTreePaths(root.left, path + root.val + "->", paths);
+      binaryTreePaths(root.right, path + root.val + "->", paths);
     }
     return paths;
   }
