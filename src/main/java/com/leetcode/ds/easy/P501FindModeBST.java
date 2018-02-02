@@ -1,19 +1,11 @@
 package com.leetcode.ds.easy;
 
+import com.leetcode.ds.TreeNode;
+
 /**
  * https://leetcode.com/problems/find-mode-in-binary-search-tree/description/
  */
 public class P501FindModeBST {
-  class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int x) {
-      val = x;
-    }
-  }
-
   private int currVal;
   private int currCount;
   private int maxCount;
