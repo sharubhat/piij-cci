@@ -66,19 +66,20 @@ public class P3LongestSubstring {
    * If the character is already in the hashmap, then move the left pointer to the right of
    * the same character last found. Note that the two pointers can only move forward.
    *
-   * @param s input String
+   * @param str input String
    * @return
    */
-  public int lengthOfLongestSubstring3(String s) {
-    if (s.length() == 0) return 0;
+  public int lengthOfLongestSubstring3(String str) {
+    if (str.length() == 0) return 0;
     Map<Character, Integer> map = new HashMap<>();
     int max = 0;
-    for (int i = 0, j = 0; i < s.length(); ++i) {
-      if (map.containsKey(s.charAt(i))) {
-        j = Math.max(j, map.get(s.charAt(i)) + 1);
+    for (int st = 0, end = 0; end < str.length(); end++) {
+      if (map.containsKey(str.charAt(end))) {
+        // update start pointer only if it moves it forward
+        st = Math.max(st, map.get(str.charAt(st)) + 1);
       }
-      map.put(s.charAt(i), i);
-      max = Math.max(max, i - j + 1);
+      map.put(str.charAt(end), end);
+      max = Math.max(max, end - st + 1);
     }
     return max;
   }
