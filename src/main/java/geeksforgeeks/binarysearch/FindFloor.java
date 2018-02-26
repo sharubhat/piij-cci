@@ -1,4 +1,4 @@
-package com.geeksforgeeks.binarysearch;
+package geeksforgeeks.binarysearch;
 
 public class FindFloor {
   private int findFloor(int[] arr, int key, int left, int right) {

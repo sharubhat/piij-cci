@@ -1,4 +1,4 @@
-package com.javachallenge;
+package javachallenge;
 
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;

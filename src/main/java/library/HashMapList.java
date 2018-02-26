@@ -1,4 +1,4 @@
-package com.cci.library;
+package library;
 
 import java.util.ArrayList;
 import java.util.HashMap;

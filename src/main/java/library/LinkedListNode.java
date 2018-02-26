@@ -1,4 +1,4 @@
-package com.cci.library;
+package library;
 
 public class LinkedListNode {
   public LinkedListNode next;

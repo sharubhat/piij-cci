@@ -1,4 +1,4 @@
-package com.geeksforgeeks.graphs;
+package geeksforgeeks.graphs;
 
 import java.util.*;
 

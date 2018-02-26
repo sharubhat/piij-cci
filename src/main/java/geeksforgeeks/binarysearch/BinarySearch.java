@@ -1,4 +1,4 @@
-package com.geeksforgeeks.binarysearch;
+package geeksforgeeks.binarysearch;
 
 public class BinarySearch {
   private int bs(int[] arr, int left, int right, int key) {

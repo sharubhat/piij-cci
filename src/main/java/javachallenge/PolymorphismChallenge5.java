@@ -1,4 +1,4 @@
-package com.javachallenge;
+package javachallenge;
 
 /**
  * Learning notes:
