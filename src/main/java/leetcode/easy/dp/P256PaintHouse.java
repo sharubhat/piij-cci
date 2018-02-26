@@ -1,4 +1,4 @@
-package com.leetcode.easy.dp;
+package leetcode.easy.dp;
 
 /**
  * https://leetcode.com/problems/paint-house/description/

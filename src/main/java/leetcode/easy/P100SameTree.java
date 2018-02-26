@@ -1,6 +1,6 @@
-package com.leetcode.easy;
+package leetcode.easy;
 
-import com.leetcode.TreeNode;
+import leetcode.TreeNode;
 
 /**
  * https://leetcode.com/problems/same-tree/description/

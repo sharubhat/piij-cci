@@ -1,4 +1,4 @@
-package com.dp.tc;
+package topcoder.dp;
 
 /**
  * Given a list of N coins, their values (V1, V2, … , VN), and the total sum S,

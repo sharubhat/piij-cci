@@ -1,4 +1,4 @@
-package com.leetcode.hard;
+package leetcode.hard;
 
 /**
  * We are using binary search to find the smallest possible value of D.

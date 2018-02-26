@@ -1,4 +1,4 @@
-package com.topcoder.binarysearch;
+package topcoder.binarysearch;
 
 /** https://community.topcoder.com/stat?c=problem_statement&pm=2427&rd=4765 */
 public class Mortgage {

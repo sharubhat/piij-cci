@@ -1,4 +1,4 @@
-package com.topcoder;
+package topcoder;
 
 import java.util.Collections;
 import java.util.LinkedList;

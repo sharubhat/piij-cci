@@ -1,4 +1,4 @@
-package com.topcoder.graphs.dijkstra.robocourier;
+package topcoder.graphs.dijkstra.robocourier;
 
 import java.util.*;
 

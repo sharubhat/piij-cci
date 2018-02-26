@@ -1,4 +1,4 @@
-package com.topcoder.graphs.dijkstra;
+package topcoder.graphs.dijkstra;
 
 /**
  * Ref: http://community.topcoder.com/tc?module=ProblemDetail&rd=5009&pm=2274

@@ -1,4 +1,4 @@
-package com.leetcode.hard.trees;
+package leetcode.hard.trees;
 
 /**
  * https://leetcode.com/problems/binary-tree-maximum-path-sum/description/

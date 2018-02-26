@@ -1,4 +1,4 @@
-package com.leetcode.easy;
+package leetcode.easy;
 
 public class P125ValidPalindrome {
   public boolean isPalindrome(String s) {

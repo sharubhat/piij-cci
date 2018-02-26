@@ -1,4 +1,4 @@
-package com.topcoder.graphs.floyd.warshall;
+package topcoder.graphs.floyd.warshall;
 
 import java.util.Arrays;
 

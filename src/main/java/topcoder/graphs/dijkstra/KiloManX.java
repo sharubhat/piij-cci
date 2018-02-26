@@ -1,4 +1,4 @@
-package com.topcoder.graphs.dijkstra;
+package topcoder.graphs.dijkstra;
 
 import java.util.BitSet;
 import java.util.PriorityQueue;

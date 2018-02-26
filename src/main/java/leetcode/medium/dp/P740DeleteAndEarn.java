@@ -1,4 +1,4 @@
-package com.leetcode.medium.dp;
+package leetcode.medium.dp;
 
 /**
  * https://leetcode.com/contest/weekly-contest-61/problems/delete-and-earn/

@@ -1,4 +1,4 @@
-package com.leetcode.facebook;
+package leetcode.facebook;
 
 /**
  * http://cslibrary.stanford.edu/109/TreeListRecursion.html

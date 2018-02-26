@@ -1,4 +1,4 @@
-package com.topcoder.graphs.bfs;
+package topcoder.graphs.bfs;
 
 import java.util.LinkedList;
 import java.util.Queue;

@@ -1,4 +1,4 @@
-package com.leetcode.template;
+package leetcode.template;
 
 public class Substring {
   /*

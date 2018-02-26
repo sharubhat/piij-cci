@@ -1,4 +1,4 @@
-package com.leetcode.medium;
+package leetcode.medium;
 
 public class P114FlattenBinaryTreeToLinkedList {
   public static class TreeNode {

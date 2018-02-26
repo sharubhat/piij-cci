@@ -1,4 +1,4 @@
-package com.leetcode.medium.dp;
+package leetcode.medium.dp;
 
 import java.util.Arrays;
 

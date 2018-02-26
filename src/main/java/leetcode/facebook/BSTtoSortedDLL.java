@@ -1,4 +1,4 @@
-package com.leetcode.facebook;
+package leetcode.facebook;
 
 import java.util.Stack;
 

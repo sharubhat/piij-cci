@@ -1,4 +1,4 @@
-package com.leetcode.medium;
+package leetcode.medium;
 
 /**
  * https://leetcode.com/problems/implement-trie-prefix-tree/description/

@@ -1,4 +1,4 @@
-package com.leetcode.easy;
+package leetcode.easy;
 
 public class P680ValidPalindromeII {
   public boolean validPalindrome(String s) {

@@ -1,4 +1,4 @@
-package com.leetcode.easy.greedy;
+package leetcode.easy.greedy;
 
 /**
  * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/description/

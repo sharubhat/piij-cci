@@ -1,4 +1,4 @@
-package com.leetcode.medium;
+package leetcode.medium;
 
 /**
  * https://leetcode.com/contest/weekly-contest-61/problems/monotone-increasing-digits/

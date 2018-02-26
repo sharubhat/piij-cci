@@ -1,4 +1,4 @@
-package com.leetcode.easy;
+package leetcode.easy;
 
 /**
  * https://leetcode.com/contest/weekly-contest-by-app-academy/problems/find-smallest-letter-greater-than-target/

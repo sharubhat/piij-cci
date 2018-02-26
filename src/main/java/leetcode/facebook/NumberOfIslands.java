@@ -1,4 +1,4 @@
-package com.leetcode.facebook;
+package leetcode.facebook;
 
 public class NumberOfIslands {
   public int numIslands(char[][] grid) {

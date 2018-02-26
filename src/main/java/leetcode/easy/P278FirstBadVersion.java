@@ -1,4 +1,4 @@
-package com.leetcode.easy;
+package leetcode.easy;
 
 /**
  * https://leetcode.com/problems/first-bad-version/description/

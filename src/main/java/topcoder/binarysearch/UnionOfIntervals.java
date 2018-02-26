@@ -1,4 +1,4 @@
-package com.topcoder.binarysearch;
+package topcoder.binarysearch;
 
 /**
  * https://community.topcoder.com/stat?c=problem_statement&pm=4823&rd=8074&rm=&cr=15533368

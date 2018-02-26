@@ -1,4 +1,4 @@
-package com.topcoder.graphs.dfs.tc;
+package topcoder.graphs.dfs.tc;
 
 import java.util.StringTokenizer;
 
