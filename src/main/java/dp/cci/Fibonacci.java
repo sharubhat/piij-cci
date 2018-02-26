@@ -1,4 +1,4 @@
-package com.dp.cci;
+package dp.cci;
 
 public class Fibonacci {
     // draw the tree to see that every node has two subtrees. Time taken is roughly the number

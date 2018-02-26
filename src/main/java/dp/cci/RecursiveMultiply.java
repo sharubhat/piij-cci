@@ -1,4 +1,4 @@
-package com.dp.cci;
+package dp.cci;
 
 public class RecursiveMultiply {
 }

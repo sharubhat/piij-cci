@@ -1,4 +1,4 @@
-package com.dp;
+package dp;
 
 import java.util.LinkedList;
 

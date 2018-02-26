@@ -1,4 +1,4 @@
-package com.dp;
+package dp;
 
 public class LongestCommonSubsequence {
   private int lcsDynamic(char[] str1, char[] str2) {

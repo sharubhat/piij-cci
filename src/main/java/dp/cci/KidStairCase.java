@@ -1,4 +1,4 @@
-package com.dp.cci;
+package dp.cci;
 
 public class KidStairCase {
     // Drawing the recursion tree will show that each node has 3 subtrees resulting in O(3 ^ n) time complexity.

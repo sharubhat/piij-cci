@@ -1,4 +1,4 @@
-package com.dp.cci;
+package dp.cci;
 
 public class Coins {
     public static int makeChange(int amt, int[] denoms, int index) {

@@ -1,4 +1,4 @@
-package com.dp.source;
+package dp.source;
 
 // ref : https://www.youtube.com/watch?v=xdA41xLxwuM
 // Length of longest common sub word

@@ -1,4 +1,4 @@
-package com.dp.cci;
+package dp.cci;
 
 import java.util.ArrayList;
 import java.util.List;
