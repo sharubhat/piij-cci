@@ -1,4 +1,4 @@
-package com.cake;
+package cake;
 
 import java.util.ArrayList;
 import java.util.HashSet;
