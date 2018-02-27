@@ -2,6 +2,10 @@ package leetcode.easy;
 
 import java.util.Stack;
 
+/**
+ * https://leetcode.com/problems/valid-parentheses/description/
+ * P.S: String only contains '(', ')', '{', '}', '[' and ']'. So length of the string has to be even.
+ */
 public class P20ValidParentheses {
   public boolean isValid(String s) {
     if (s.length() % 2 != 0) {
