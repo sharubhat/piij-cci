@@ -44,19 +44,19 @@ public class DGraph {
   public void bfs(int s) {
     Integer[] levels = new Integer[this.numVertices];
     Integer[] parents = new Integer[this.numVertices];
-    Queue<Integer> queue = new ArrayDeque<>();
-    queue.add(s);
+    Queue<Integer> verticesToVisit = new ArrayDeque<>();
+    verticesToVisit.add(s);
     int level = 0;
     levels[s] = level++;
     parents[s] = -1;
-    while (!queue.isEmpty()) {
-      s = queue.poll();
+    while (!verticesToVisit.isEmpty()) {
+      s = verticesToVisit.poll();
       actOnVertex(s);
       Iterator<Integer> it = adjListArray[s].iterator();
       while (it.hasNext()) {
         int n = it.next();
         if (parents[n] == null) {
-          queue.add(n);
+          verticesToVisit.add(n);
           levels[n] = level;
           parents[n] = s;
         }
