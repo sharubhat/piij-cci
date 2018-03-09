@@ -15,7 +15,9 @@ public class P46MeshMessage {
       put("Noam", new String[]{"Nathan", "Jayden", "William"});
       put("Omar", new String[]{"Ren", "Min", "Scott"});
     }};
-    new P46MeshMessage().bfs(network, "Jayden", null);
+    System.out.println(
+        Arrays.toString(new P46MeshMessage().bfs(network, "Jayden", "Adam"))
+    );
   }
 
   public String[] bfs(Map<String, String[]> graph, String startNode, String endNode) {
@@ -29,15 +31,15 @@ public class P46MeshMessage {
     Map<String, String> parents = new LinkedHashMap<>();
     Queue<String> nodesToVisit = new ArrayDeque<>();
     nodesToVisit.add(startNode);
-    parents.put(startNode, "");
+    parents.put(startNode, null);
     while (!nodesToVisit.isEmpty()) {
       String currNode = nodesToVisit.remove();
       if (currNode.equalsIgnoreCase(endNode)) {
-        return reconstructPath(startNode, endNode, parents);
+        return reconstructPath(endNode, parents);
       }
       String[] neighbours = graph.get(currNode);
       for (String neighbour : neighbours) {
-        if (parents.get(neighbour) == null) {
+        if (!parents.containsKey(neighbour)) {
           nodesToVisit.add(neighbour);
           parents.put(neighbour, currNode);
         }
@@ -46,13 +48,12 @@ public class P46MeshMessage {
     return null;
   }
 
-  private static String[] reconstructPath(String startNode, String endNode, Map<String, String> parents) {
+  private static String[] reconstructPath(String endNode, Map<String, String> parents) {
     List<String> path = new ArrayList<>();
-    String parent = parents.get(endNode);
-    path.add(endNode);
-    while (!parent.equalsIgnoreCase(startNode) && !parent.equals("")) {
-      path.add(parent);
-      parent = parents.get(parent);
+    String currNode = endNode;
+    while (currNode != null) {
+      path.add(currNode);
+      currNode = parents.get(currNode);
     }
     Collections.reverse(path);
     return path.toArray(new String[path.size()]);
