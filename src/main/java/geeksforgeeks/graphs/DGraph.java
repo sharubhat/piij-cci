@@ -42,29 +42,29 @@ public class DGraph {
    * @param s source node
    */
   public void bfs(int s) {
-    Integer[] level = new Integer[this.numVertices];
-    Integer[] parent = new Integer[this.numVertices];
+    Integer[] levels = new Integer[this.numVertices];
+    Integer[] parents = new Integer[this.numVertices];
     Queue<Integer> queue = new ArrayDeque<>();
     queue.add(s);
-    int i = 1;
-    level[s] = 0;
-    parent[s] = -1;
+    int level = 1;
+    levels[s] = 0;
+    parents[s] = -1;
     while (queue.size() != 0) {
       s = queue.poll();
       actOnVertex(s);
       Iterator<Integer> it = adjListArray[s].iterator();
       while (it.hasNext()) {
         int n = it.next();
-        if (parent[n] == null) {
+        if (parents[n] == null) {
           queue.add(n);
-          level[n] = i;
-          parent[n] = s;
+          levels[n] = level;
+          parents[n] = s;
         }
       }
-      i++;
+      level++;
     }
-    System.out.println("Level : " + Arrays.toString(level));
-    System.out.println("Parent : " + Arrays.toString(parent));
+    System.out.println("Level : " + Arrays.toString(levels));
+    System.out.println("Parent : " + Arrays.toString(parents));
   }
 
   /**
