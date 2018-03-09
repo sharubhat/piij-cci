@@ -46,10 +46,10 @@ public class DGraph {
     Integer[] parents = new Integer[this.numVertices];
     Queue<Integer> queue = new ArrayDeque<>();
     queue.add(s);
-    int level = 1;
-    levels[s] = 0;
+    int level = 0;
+    levels[s] = level++;
     parents[s] = -1;
-    while (queue.size() != 0) {
+    while (!queue.isEmpty()) {
       s = queue.poll();
       actOnVertex(s);
       Iterator<Integer> it = adjListArray[s].iterator();
