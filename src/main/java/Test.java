@@ -21,6 +21,8 @@ public class Test {
     System.out.println("---------");
     pagination(101);
     pagination(100);
+
+    testBitwiseOperatorOnInt();
   }
 
   private static void pagination(int n) {
@@ -32,5 +34,13 @@ public class Test {
       int end = start + 9;
       System.out.println(start + " " + end);
     }
+  }
+
+  private static void testBitwiseOperatorOnInt() {
+    int i = 1;
+    System.out.println(i & i);
+    System.out.println(i | i);
+    System.out.println(i ^ i);
+    System.out.println(i ^ i ^ 2);
   }
 }

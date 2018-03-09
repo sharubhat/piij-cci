@@ -5,9 +5,13 @@ package leetcode.easy.dp;
  */
 public class P198HouseRobber {
   /**
-   * Obvious dp approach. Idea is, the maximum money robber can make when he is at last house
-   * either includes or excludes the last house. If it includes, then it's sum of maximum money made
-   * until last but two house plus last house money.
+   * Short summary:
+   * Given an array, find the max sum possible without including any two adjacent elements.
+   * Approach:
+   * The maximum money robber can make when he is at last house either includes or excludes
+   * the last house. If it includes, then it's sum of maximum money made until last but two house
+   * plus the money in the last house.
+   *
    * @param nums money stashed in each house
    * @return int
    */
@@ -18,16 +22,19 @@ public class P198HouseRobber {
 
   private int rob(int[] nums, int index, int[] dp) {
     if (index < 0) {
-        return 0;
+      return 0;
     }
     if (dp[index] == 0) {
-        dp[index] = Math.max(rob(nums, index - 1, dp), nums[index] + rob(nums, index - 2, dp));
+      int includingCurrentHouse = nums[index] + rob(nums, index - 2, dp);
+      int excludingCurrentHouse = rob(nums, index - 1, dp);
+      dp[index] = Math.max(includingCurrentHouse, excludingCurrentHouse);
     }
     return dp[index];
   }
 
   /**
    * Memory optimized bottom up approach
+   *
    * @param nums money stashed in each house
    * @return int
    */

@@ -64,7 +64,7 @@ public class P146LruCache {
   }
 
   /**
-   * Returns the value for key or -1 is cache does not contain the key. O(1) time complexity.
+   * Returns the value for key or -1 if cache does not contain the key. O(1) time complexity.
    * @param key key
    * @return int
    */

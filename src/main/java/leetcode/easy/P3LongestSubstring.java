@@ -1,10 +1,6 @@
 package leetcode.easy;
 
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 /**
  * https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
@@ -61,6 +57,31 @@ public class P3LongestSubstring {
       maxLength = Math.max(maxLength, i - startIndex + 1);
     }
     return maxLength;
+  }
+
+  /**
+   * The basic idea is, keep a hashmap which stores the characters in string as keys and
+   * their positions as values, and keep two pointers which define the max substring.
+   * Move the right pointer to scan through the string , and meanwhile update the hashmap.
+   * If the character is already in the hashmap, then move the left pointer to the right of
+   * the same character last found. Note that the two pointers can only move forward.
+   *
+   * @param str input String
+   * @return
+   */
+  public int lengthOfLongestSubstring3(String str) {
+    if (str.length() == 0) return 0;
+    Map<Character, Integer> map = new HashMap<>();
+    int max = 0;
+    for (int st = 0, end = 0; end < str.length(); end++) {
+      if (map.containsKey(str.charAt(end))) {
+        // update start pointer only if it moves it forward
+        st = Math.max(st, map.get(str.charAt(st)) + 1);
+      }
+      map.put(str.charAt(end), end);
+      max = Math.max(max, end - st + 1);
+    }
+    return max;
   }
 
   public static void main(String[] args) {
