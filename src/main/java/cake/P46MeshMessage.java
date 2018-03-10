@@ -2,6 +2,9 @@ package cake;
 
 import java.util.*;
 
+/**
+ * Bidirectional bfs is going to be faster. Explore that option.
+ */
 public class P46MeshMessage {
   public static void main(String[] args) {
     Map<String, String[]> network = new HashMap<String, String[]>() {{
