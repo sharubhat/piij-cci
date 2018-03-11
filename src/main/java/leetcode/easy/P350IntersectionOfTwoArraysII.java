@@ -2,6 +2,9 @@ package leetcode.easy;
 
 import java.util.*;
 
+/**
+ * https://leetcode.com/problems/intersection-of-two-arrays-ii/description/
+ */
 public class P350IntersectionOfTwoArraysII {
   public int[] intersect(int[] nums1, int[] nums2) {
     if (nums1.length < nums2.length) {
@@ -22,6 +25,10 @@ public class P350IntersectionOfTwoArraysII {
         occurrence.put(num, occurrence.get(num) - 1);
       }
     }
-    return result.stream().mapToInt(i -> i).toArray();
+    int[] res = new int[result.size()];
+    for (int i = 0; i < res.length; i++) {
+      res[i] = result.get(i);
+    }
+    return res;
   }
 }
