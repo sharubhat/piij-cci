@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Standard FizzBuzz problem.
+ */
 public class FizzBuzz {
   public List<String> fizzBuzz(int n) {
     List<String> result = new ArrayList<>();
