@@ -2,6 +2,7 @@ package leetcode.easy;
 
 import java.util.LinkedList;
 import java.util.List;
+
 // killing the person next to you while standing in a circle until only one remains.
 public class Killer {
   public static void main(String[] args) {
