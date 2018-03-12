@@ -12,9 +12,9 @@ public class Killer {
     }
 
     int i = 0;
-    while(list.size() > 1) {
+    while (list.size() > 1) {
       ++i;
-      if(i >= list.size()) {
+      if (i >= list.size()) {
         i = i % list.size();
       }
       list.remove(i);
