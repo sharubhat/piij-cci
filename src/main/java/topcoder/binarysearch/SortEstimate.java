@@ -14,6 +14,10 @@ public class SortEstimate {
     while (f(c, low) < time) {
       low = low * 2;
     }
+    // if we get lucky, we might find exact value for n
+    if (f(c, low) == time) {
+      return low;
+    }
     // now low is slightly higher than highest possible n for which running time <= time
     // set this to be high as we don't need to look any further in real numbers line and reset low.
     double high = low;

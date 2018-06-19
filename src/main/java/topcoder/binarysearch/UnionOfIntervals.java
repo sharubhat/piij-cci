@@ -12,8 +12,8 @@ package topcoder.binarysearch;
 public class UnionOfIntervals {
   public int nthElement(int[] lowerBound, int[] upperBound, int n) {
     int len = lowerBound.length;
-    long min = 2_000_000_000;
-    long max = -2_000_000_000;
+    long min = Integer.MAX_VALUE;
+    long max = Integer.MIN_VALUE;
     long mid;
     for (int i = 0; i < len; i++) {
       min = min > lowerBound[i] ? lowerBound[i] : min;
@@ -21,15 +21,7 @@ public class UnionOfIntervals {
     }
     while (min <= max) {
       mid = min + (max - min) / 2;
-      long total = 0;
-      for (int i = 0; i < len; i++) {
-        if (mid >= lowerBound[i] && mid <= upperBound[i]) {
-          total = total + (mid - lowerBound[i] + 1);
-        } else if (mid >= lowerBound[i] && mid > upperBound[i]) {
-          total = total + (upperBound[i] - lowerBound[i] + 1);
-        }
-      }
-      if (total > n) {
+      if (f(lowerBound, upperBound, len, mid) > n) {
         max = mid - 1;
       } else {
         min = mid + 1;
@@ -38,8 +30,21 @@ public class UnionOfIntervals {
     return (int)min;
   }
 
+  private long f(int[] lowerBound, int[] upperBound, int len, long mid) {
+    long total = 0;
+    for (int i = 0; i < len; i++) {
+      if (mid >= lowerBound[i] && mid <= upperBound[i]) {
+        total = total + (mid - lowerBound[i] + 1);
+      } else if (mid >= lowerBound[i] && mid > upperBound[i]) {
+        total = total + (upperBound[i] - lowerBound[i] + 1);
+      }
+    }
+    return total;
+  }
+
   public static void main(String[] args) {
     System.out.println(new UnionOfIntervals().nthElement(new int[] {1, 3}, new int[] {4, 5}, 3));
+    System.out.println(new UnionOfIntervals().nthElement(new int[] {1, 5}, new int[] {3, 7}, 4));
     System.out.println(new UnionOfIntervals().nthElement(new int[] {1, 1, 1, 1, 1, 1}, new int[] {2, 2, 2, 2, 2, 100}, 5));
     // Watch out for overflow errors.
     System.out.println(new UnionOfIntervals().nthElement(new int[] {-1500000000}, new int[] {1500000000}, 1500000091));

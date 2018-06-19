@@ -1,0 +1,1 @@
+https://discuss.codechef.com/questions/21385/a-tutorial-on-suffix-arrays
