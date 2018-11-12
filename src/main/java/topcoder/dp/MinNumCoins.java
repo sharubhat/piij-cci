@@ -93,28 +93,28 @@ public class MinNumCoins {
   /**
    * Bottom up solution
    *
-   * @param values
+   * @param coinValues
    * @param sum
    * @return
    */
-  public int minCoinsBU(int[] values, int sum) {
-    int[] min = new int[sum + 1];
-    Arrays.fill(min, Integer.MAX_VALUE);
-    min[0] = 0;
+  public int minCoinsBU(int[] coinValues, int sum) {
+    int[] sums = new int[sum + 1];
+    Arrays.fill(sums, Integer.MAX_VALUE);
+    sums[0] = 0;
 
-    for (int i = 0; i < min.length; i++) {
-      for (int j = 0; j < values.length; j++) {
-        // min[i - values[j]] != Integer.MAX_VALUE is important
-        // if min of current sum - current coin has no solution,
-        // it means current sum also can'thave a solution.
-        if (values[j] <= i
-            && min[i - values[j]] != Integer.MAX_VALUE
-            && min[i - values[j]] + 1 < min[i]) {
-          min[i] = min[i - values[j]] + 1;
+    for (int currSum = 0; currSum < sums.length; currSum++) {
+      for (int currCoin : coinValues) {
+        int previousSum = sums[currSum - currCoin];
+        // previousSum != Integer.MAX_VALUE is important
+        // if previousSum has no solution, current sum also can't have a solution.
+        if (currCoin <= currSum
+            && previousSum != Integer.MAX_VALUE
+            && previousSum + 1 < sums[currSum]) {
+          sums[currSum] = previousSum + 1;
         }
       }
     }
-    return min[sum] == Integer.MAX_VALUE ? -1 : min[sum];
+    return sums[sum] == Integer.MAX_VALUE ? -1 : sums[sum];
   }
 
   public static void main(String[] args) {

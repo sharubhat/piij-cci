@@ -3,7 +3,7 @@ package geeksforgeeks.graphs;
 import java.util.*;
 
 /**
- * Adjacency list representation of undirected graph.
+ * Adjacency list representation of directed graph.
  * There are many ways to represent a graph. Current implementation uses an array of
  * LinkedLists. Alternative is to use a map of Integer -> List of Integers, which under the
  * hood does the same thing.
