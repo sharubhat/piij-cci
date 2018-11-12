@@ -104,13 +104,13 @@ public class MinNumCoins {
 
     for (int currSum = 0; currSum < sums.length; currSum++) {
       for (int currCoin : coinValues) {
-        int previousSum = sums[currSum - currCoin];
-        // previousSum != Integer.MAX_VALUE is important
-        // if previousSum has no solution, current sum also can't have a solution.
-        if (currCoin <= currSum
-            && previousSum != Integer.MAX_VALUE
-            && previousSum + 1 < sums[currSum]) {
-          sums[currSum] = previousSum + 1;
+        if (currCoin <= currSum) {
+          int previousSum = sums[currSum - currCoin];
+          // previousSum != Integer.MAX_VALUE is important
+          // if previousSum has no solution, current sum also can't have a solution.
+          if (previousSum != Integer.MAX_VALUE && previousSum + 1 < sums[currSum]) {
+            sums[currSum] = previousSum + 1;
+          }
         }
       }
     }
