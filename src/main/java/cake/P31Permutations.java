@@ -34,20 +34,24 @@ public class P31Permutations {
 
   List<String> anagrams(String input) {
     List<String> result = new ArrayList();
-    backtrack(input, result, "");
+    backtrack("", input, result);
     return result;
   }
 
-  void backtrack(String input, List result, String str) {
-    if (str.length() == input.length()) {
-      result.add(str);
+  void backtrack(String prefix, String input, List result) {
+    if (prefix.length() == input.length()) {
+      result.add(prefix);
     } else {
       for (char c : input.toCharArray()) {
-        if (str.indexOf(c) == -1) { // character not found in string str
-          backtrack(input, result, str + c);
+        if (!contains(prefix, c)) {
+          backtrack(prefix + c, input, result);
         }
       }
     }
+  }
+
+  boolean contains(String prefix, char c) {
+    return prefix.indexOf(c) == -1;
   }
 
   public static void main(String[] args) {

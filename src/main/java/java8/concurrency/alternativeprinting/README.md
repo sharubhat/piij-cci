@@ -1,0 +1,1 @@
+Write a program with two threads (A and B), where A prints 1 , B prints 2 and so on until 50 is reached.

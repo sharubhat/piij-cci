@@ -19,10 +19,7 @@ public class LongestNonDecreasingSubsequence {
     if (pos == arr.length) {
       return 0;
     }
-    int taken = 0;
-    if (prev <= arr[pos]) {
-      taken = 1 + llndsRec(arr, arr[pos], pos + 1);
-    }
+    int taken = (arr[pos] >= prev) ? (1 + llndsRec(arr, arr[pos], pos + 1)) : 0;
     int notTaken = llndsRec(arr, prev, pos + 1);
     return Math.max(taken, notTaken);
   }
