@@ -48,7 +48,9 @@ public class DWGraph {
   }
 
   /**
-   * Dijkstra's single source shortest path using min heap or priority queue
+   * Dijkstra's single source shortest path using min heap or priority queue.
+   * Works on directed or undirected, weighted, acyclic graphs with no negative weights.
+   * Additional reference : https://www.youtube.com/watch?v=GazC3A4OQTE
    *
    * @param source
    */
@@ -63,9 +65,8 @@ public class DWGraph {
     pq.add(new Edge(source, 0));
     while (!pq.isEmpty()) {
       Edge curr = pq.poll();
-      Iterator<Edge> adjIt = this.adjListArray[curr.vertex].iterator();
-      while(adjIt.hasNext()) {
-        Edge adjE = adjIt.next();
+      for (Edge adjE : this.adjListArray[curr.vertex]) {
+        // if existing weight is more than new total weight to reach this node, take it
         if (dist[adjE.vertex] > curr.weight + adjE.weight) {
           dist[adjE.vertex] = curr.weight + adjE.weight;
           prev[adjE.vertex] = curr.vertex;
@@ -105,9 +106,7 @@ public class DWGraph {
 
     for (int i = 1; i < this.numVertices; i++) {
       for (int u = 0; u < this.adjListArray.length; u++) {
-        Iterator<Edge> adjs = this.adjListArray[u].iterator();
-        while (adjs.hasNext()) {
-          Edge v = adjs.next();
+        for (Edge v : this.adjListArray[u]) {
           if (dist[u] != Integer.MAX_VALUE && dist[v.vertex] > v.weight + dist[u]) {
             dist[v.vertex] = v.weight + dist[u];
             prev[v.vertex] = u;
@@ -119,11 +118,9 @@ public class DWGraph {
     System.out.println(Arrays.toString(dist));
 
     for (int u = 0; u < this.numVertices; u++) {
-      Iterator<Edge> adjs = this.adjListArray[u].iterator();
-      while (adjs.hasNext()) {
-        Edge v = adjs.next();
+      for (Edge v : this.adjListArray[u]) {
         if (dist[v.vertex] != Integer.MAX_VALUE &&
-            dist[v.vertex] > v.weight + dist[u]) {
+                dist[v.vertex] > v.weight + dist[u]) {
           throw new RuntimeException("Graph contains negative cycles");
         }
       }

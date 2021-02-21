@@ -30,7 +30,7 @@ public class UndirectedGraph {
 
   @Override
   public String toString() {
-    StringBuffer sb = new StringBuffer();
+    StringBuilder sb = new StringBuilder();
     for (int i = 0; i < this.numVertices; i++) {
       sb.append("Adjacency list of vertex ").append(i).append(" : ");
       sb.append(this.adjListArray[i]);
@@ -48,9 +48,7 @@ public class UndirectedGraph {
     visited[source] = true;
     while (!q.isEmpty()) {
       int curr = q.poll();
-      Iterator<Integer> adjs = this.adjListArray[curr].iterator();
-      while (adjs.hasNext()) {
-        int n = adjs.next();
+      for (int n : this.adjListArray[curr]) {
         if (!visited[n]) {
           q.add(n);
           visited[n] = true;

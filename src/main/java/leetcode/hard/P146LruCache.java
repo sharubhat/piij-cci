@@ -20,17 +20,17 @@ import java.util.Map;
  * [A, B, C]
  * [B, C, D] <- here, we evict A
  */
-public class P146LruCache {
-  private static class Node {
-    int key;
-    int value;
+public class P146LruCache<K, V> {
+  private static class Node<K, V> {
+    K key;
+    V value;
     Node prev;
     Node next;
 
     public Node() {
     }
 
-    public Node(int key, int value) {
+    public Node(K key, V value) {
       this.key = key;
       this.value = value;
     }
@@ -67,7 +67,7 @@ public class P146LruCache {
     }
   }
 
-  private Map<Integer, Node> cache;
+  private Map<K, Node<K, V>> cache;
   private LinkedList list;
   private int capacity;
 
@@ -86,11 +86,11 @@ public class P146LruCache {
    * @param key key
    * @return int
    */
-  public int get(int key) {
+  public V get(K key) {
     if (!cache.containsKey(key)) {
-      return -1;
+      return null;
     }
-    Node node = cache.get(key);
+    Node<K, V> node = cache.get(key);
     list.unlink(node);
     list.addLast(node);
     return node.value;
@@ -103,7 +103,7 @@ public class P146LruCache {
    * @param key key
    * @param value value
    */
-  public void put(int key, int value) {
+  public void put(K key, V value) {
     if (cache.containsKey(key)) {
       list.unlink(cache.get(key));
     }

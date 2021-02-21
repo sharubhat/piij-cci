@@ -14,6 +14,7 @@ public class ExtractExamples {
 
     List<String> animals = new ArrayList<>();
     while (m.find()) {
+      System.out.println(m.find());
       System.out.println("Found a " + m.group() + ".");
       animals.add(m.group());
     }

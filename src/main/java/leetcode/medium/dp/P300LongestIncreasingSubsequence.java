@@ -36,14 +36,7 @@ public class P300LongestIncreasingSubsequence {
   public void findSubSequence(int[] arr) {
     int[] up = new int[arr.length];
     for (int i = 0; i < arr.length; i++) {
-      int max = -1;
-      for (int j = 0; j < i; j++) {
-        if (arr[j] < arr[i]) {
-          if (max == -1 || max < up[j] + 1) {
-            max = 1 + up[j];
-          }
-        }
-      }
+      int max = getMax(arr, up, i);
       if(max == -1) { // (max == -1) means none of arr[j] < arr[i]. So start new seq.
         max = 1;
       }
@@ -75,6 +68,18 @@ public class P300LongestIncreasingSubsequence {
 
     System.out.println(lengthLongest);
     System.out.println(Arrays.toString(subseq));
+  }
+
+  private int getMax(int[] arr, int[] up, int i) {
+    int max = -1;
+    for (int j = 0; j < i; j++) {
+      if (arr[j] < arr[i]) {
+        if (max == -1 || max < up[j] + 1) {
+          max = 1 + up[j];
+        }
+      }
+    }
+    return max;
   }
 
   public static void main(String[] args) {

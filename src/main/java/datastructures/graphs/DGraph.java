@@ -16,9 +16,7 @@ public class DGraph {
   DGraph(int n) {
     this.numVertices = n;
     this.adjListArray = new LinkedList[n];
-    for (int i = 0; i < n; i++) {
-      adjListArray[i] = new LinkedList<>();
-    }
+    Arrays.fill(adjListArray, new LinkedList<>());
   }
 
   /**
@@ -52,9 +50,7 @@ public class DGraph {
     while (!verticesToVisit.isEmpty()) {
       s = verticesToVisit.poll();
       actOnVertex(s);
-      Iterator<Integer> it = adjListArray[s].iterator();
-      while (it.hasNext()) {
-        int n = it.next();
+      for (int n : adjListArray[s]) {
         if (parents[n] == null) {
           verticesToVisit.add(n);
           levels[n] = level;
@@ -94,7 +90,7 @@ public class DGraph {
     actOnVertex(s);
     while (it.hasNext()) {
       int curr = it.next();
-      if(parents[curr] == null) {
+      if (parents[curr] == null) {
         parents[curr] = s;
         dfsVisit(curr, parents, tSort);
       }
@@ -109,9 +105,7 @@ public class DGraph {
   private void dfs(int s, boolean[] visited) {
     visited[s] = true;
     actOnVertex(s);
-    Iterator<Integer> it = adjListArray[s].iterator();
-    while (it.hasNext()) {
-      int n = it.next();
+    for (int n : adjListArray[s]) {
       if (!visited[n]) {
         dfs(n, visited);
       }
@@ -144,16 +138,12 @@ public class DGraph {
   private boolean hasCycle(int s, boolean[] visited, HashSet<Integer> verticesOnRecStack) {
     visited[s] = true;
     verticesOnRecStack.add(s);
-    Iterator<Integer> adjIt = this.adjListArray[s].iterator();
-    while (adjIt.hasNext()) {
-      int n = adjIt.next();
+    for (int n : this.adjListArray[s]) {
       if (verticesOnRecStack.contains(n)) {
         return true;
       }
-      if (!visited[n]) {
-        if (hasCycle(n, visited, verticesOnRecStack)) {
+      if (!visited[n] && hasCycle(n, visited, verticesOnRecStack)) {
           return true;
-        }
       }
       verticesOnRecStack.remove(s);
     }
@@ -176,9 +166,7 @@ public class DGraph {
     if (s == e) {
       return true;
     }
-    Iterator<Integer> adjIt = this.adjListArray[s].iterator();
-    while (adjIt.hasNext()) {
-      int n = adjIt.next();
+    for (int n : this.adjListArray[s]) {
       if (!visited[n]) {
         return pathExists(n, e, visited);
       }
@@ -188,7 +176,7 @@ public class DGraph {
 
   @Override
   public String toString() {
-    StringBuffer sb = new StringBuffer();
+    StringBuilder sb = new StringBuilder();
     for (int i = 0; i < this.numVertices; i++) {
       sb.append("Adjacency list of vertex ").append(i).append(" : ");
       sb.append(this.adjListArray[i]);
