@@ -22,13 +22,7 @@ public class DWGraph {
 
     @Override
     public int compareTo(Edge e) {
-      if (this.weight == e.weight) {
-        return 0;
-      } else if (this.weight > e.weight) {
-        return 1;
-      } else {
-        return -1;
-      }
+      return this.weight.compareTo(e.weight);
     }
   }
 

@@ -208,11 +208,11 @@ public class DGraph extends Graph {
 
     dfsG.dfs();
 
-    DGraph notCyclic = new DGraph(4);
-    notCyclic.addEdge(1, 2);
-    notCyclic.addEdge(2, 3);
-    notCyclic.addEdge(3, 0);
-    System.out.println("Cycle exists for acyclic graph : " + notCyclic.hasCycle());
+    DGraph acyclic = new DGraph(4);
+    acyclic.addEdge(1, 2);
+    acyclic.addEdge(2, 3);
+    acyclic.addEdge(3, 0);
+    System.out.println("Cycle exists for acyclic graph : " + acyclic.hasCycle());
 
     DGraph cyclicDisconnected = new DGraph(7);
     cyclicDisconnected.addEdge(0, 1);
