@@ -5,9 +5,7 @@ import java.util.*;
 /**
  * Adjacency list representation of undirected graph
  */
-public class UndirectedGraph {
-  int numVertices;
-  LinkedList<Integer>[] adjListArray;
+public class UndirectedGraph extends Graph {
 
   UndirectedGraph(int v) {
     this.numVertices = v;
@@ -26,17 +24,6 @@ public class UndirectedGraph {
   void addEdge(int src, int dest) {
     this.adjListArray[src].addFirst(dest);
     this.adjListArray[dest].addFirst(src);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    for (int i = 0; i < this.numVertices; i++) {
-      sb.append("Adjacency list of vertex ").append(i).append(" : ");
-      sb.append(this.adjListArray[i]);
-      sb.append("\n");
-    }
-    return sb.toString();
   }
 
   public int lengthOfShortestPath(int source, int dest) {

@@ -9,9 +9,7 @@ import java.util.*;
  * hood does the same thing.
  * Note: Generally m denotes number of vertices and n denotes number of edges.
  */
-public class DGraph {
-  int numVertices;
-  LinkedList<Integer>[] adjListArray;
+public class DGraph extends Graph {
 
   DGraph(int n) {
     this.numVertices = n;
@@ -172,17 +170,6 @@ public class DGraph {
       }
     }
     return false;
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    for (int i = 0; i < this.numVertices; i++) {
-      sb.append("Adjacency list of vertex ").append(i).append(" : ");
-      sb.append(this.adjListArray[i]);
-      sb.append("\n");
-    }
-    return sb.toString();
   }
 
   /**
